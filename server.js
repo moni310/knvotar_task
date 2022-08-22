@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const express = require('express')
 const app = express()
-const book = require("./routes/book")
-const User=require("./routes/user")
-const auth = require("./middleware/auth");
+const info = require("./routes/info")
+const User=require("./routes/bank")
+const search=require("./routes/searchbar")
+
 
 app.use(express.json())
 
@@ -24,8 +25,9 @@ mongoose
   .catch((err) => console.log(err));
 
 
-app.use("/api",auth,book);
+app.use("/admin",info);
 app.use("/user",User)
+app.use("/",search)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
